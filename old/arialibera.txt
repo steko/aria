@@ -1,0 +1,87 @@
+=============
+ Aria libera
+=============
+
+Per le premesse sul progetto e un inquadramento generale vedi la pagina web
+<http://steko.ominiverdi.org/aria/rilevatori.html>.
+
+Questo documento include una spiegazione dettagliata delle procedure che
+sono in funzione attualmente e di quelle che andrebbero implementate per lo
+sviluppo completo dell'applicazione.
+
+Scaricare i dati
+================
+
+I dati sono pubblicati tutti i giorni lavorativi (normalmente dal lunedì al
+sabato) nel file <http://www2.provincia.genova.it/datiaria/Tabulato.pdf> che
+viene aggiornato.
+
+I dati sono riferiti alle 24 ore precedenti alla pubblicazione.
+
+È in esecuzione un cronjob ogni giorno feriale (lun-ven) alle ore 15:00::
+
+    0 15 * * 1-5 /home/steko/aria/download.sh
+
+Lo script ``download.sh`` non fa altro che scaricare il file PDF e copiarlo
+nella directory ``pdf2`` conservando il suo timestamp originale (utile per
+verificare la bontà del file senza aprirlo).
+
+Invia anche una e-mail tramite lo script ``sendmail.sh`` con l'output di::
+
+    ls -lgo
+
+sul file PDF odierno.
+
+Estrarre i dati
+===============
+
+Ovviamente le cose semplici sono troppo semplici. Il PDF è il peggiore formato
+esistente per trasmettere dati tabellari. La strategia che abbiamo usato nei
+primi esperimenti condotti a febbraio è quella di convertire il PDF in formato
+HTML usando il programma ``pdftohtml`` della libreria Poppler.
+
+Questa conversione non viene attualmente eseguita ma va aggiunta al cronjob
+visto sopra.
+
+Lo script
+---------
+
+Il grosso del lavoro viene svolto da uno script chiamato ``genova.py`` (per
+distinguerlo dal suo omologo che lavora con i dati ARPAT).
+
+In breve questo script carica il file HTML generato dalla conversione vista
+prima, e usando alcune regole preimpostate cerca di estrarre i valori numerici
+relativi ad ogni misurazione. Usiamo la libreria BeautifulSoup per fare il 
+parsing del file HTML.
+
+Le cose sarebbero fin troppo facili a questo modo se non fosse per le misurazioni
+mancanti, che finiscono irrimediabilmente per interrompere il normale flusso
+del programma.
+
+Una delle regole preimpostate è l'elenco dei sensori installati per ogni stazione
+di rilevamento, poiché in mancanza di questo è impossibile stabilire a quale
+sensore si riferisca ogni misurazione una volta convertita in HTML.
+
+Sarebbe ottimale riuscire a “ricostruire” la tabella del PDF basandosi sulle
+coordinate delle celle (che invece rimangono fisse) e recuperare i valori tramite
+quelle. Per fare questo si dovrebbero usare le librerie pypoppler. L'autore
+Gian Mario Tagliaretti pensa che si possa fare.
+
+Una volta recuperati i valori, lo script provvede a inserirli nel database
+PostgreSQL che per ora stiamo usando, con la data riferita al periodo di rilevamento
+e non a quello di esecuzione dello script.
+
+Il codice ha una struttura accettabile, anche se andrebbe totalmente riscritto
+(nomi di variabili e funzioni) per essere comprensibile.
+
+Modello dei dati
+----------------
+
+Un primo draft di modello dei dati è stato fatto da Kappu ed è accessibile
+sul wiki privato <http://www.ominiverdi.org/wiki/index.php/AriaDB>
+
+Comunque la componente geografica ha un ruolo minimale, e può essere anche
+totalmente separata dell'applicazione principale.
+
+Per questo per il momento vorrei sviluppare una applicazione tipo che giri in
+locale su SQLite (senza geografia).
