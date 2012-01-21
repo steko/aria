@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="it">
+ <head>
+   <meta charset="utf-8">
+
+   <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+   <style type="text/css">
+        body {
+          background-color: #fff;
+          position: relative;
+          padding-top: 60px;
+        }
+
+        section {
+            padding-top: 60px;
+        }
+        .ominiverdi {
+            color: #009900;
+        }
+   </style>
+
+   <title>Inquinamento atmosferico a Genova</title>
+   <!--[if IE]>
+   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+   <![endif]-->
+ </head>
+
+ <body>
+
+    <!-- Topbar
+    ================================================== -->
+    <div class="topbar" data-scrollspy="scrollspy" >
+      <div class="topbar-inner">
+        <div class="container">
+          <a class="brand" href="#"><span class="ominiverdi">ominiverdi</span></a>
+
+          <ul class="nav">
+            <li class="active"><a href="#about">Panoramica</a></li>
+            <li><a href="#stazioni">Le stazioni di rilevamento</a></li>
+            <li><a href="#sensori">I sensori</a></li>
+            <li><a href="#mappa">La mappa</a></li>
+            <li><a href="#link">Link</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+<div class="container">
+    <header>
+        <h1>Inquinamento atmosferico a Genova <small>Dati liberi sulla qualità dell'aria</small> <a href="https://twitter.com/share" class="twitter-share-button" data-via="stekosteko" data-lang="it">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</h1>
+    </header>
+
+    <div class="row">
+        <div class="span8">
+            <p>La <a href="http://www.provincia.genova.it/portal/template/viewTemplate?templateId=z67v0auyd1_layout_voggbwuyei.psml">Provincia di Genova</a> mette a disposizione dei cittadini i dati
+            quotidiani sull'inquinamento atmosferico tramite il sito web ufficiale. Questo
+            è un fatto molto positivo, che permette a chiunque di avere un'idea
+            della qualità dell'aria in città e nelle aree suburbane, e inoltre
+            contiene previsioni sulla situazione nelle 24 ore successive alla
+            emissione del bollettino.</p>
+            <p>Purtroppo, tutto ciò è disponibile solo in formato PDF. In altre parole,
+            si può leggere e consultare ma non elaborare in altri modi: non c'è una
+            tabella da cui si possa creare un grafico, un foglio di calcolo, una
+            banca dati. Questo è un fatto negativo, perché i cittadini dovrebbero
+            poter accedere a questi dati senza restrizioni tecnologiche.</p>
+            <p>Questo esperimento punta a colmare questo problema, e rendere i
+            dati sulla qualità dell'aria un patrimonio di informazioni accessibile
+            a tutti.</p>
+
+            <div class="alert-message warning fade in" data-alert="alert">
+                <a class="close" href="#">×</a>
+                <p><strong>Attenzione!</strong> Questo servizio è in fase di sperimentazione.</p>
+                <p>I dati presentati non hanno alcun valore ufficiale e non sono in nessun
+                modo approvati dagli enti che effettuano le misurazioni.</p>
+            </div>
+        </div>
+        <div class="span8">
+            <img src="images/20110820866.jpg" width="100%" />
+        </div>
+    </div>
+
+
+<section id="about">
+  <div class="page-header">
+    <h1>Cosa stiamo facendo <small>Una panoramica del progetto</small></h1>
+  </div>
+
+  <div class="row">
+    <div class="span8">
+        <h2>Un esperimento che dura da 4 anni</h2>
+        <p>Nel <strong>2007</strong> abbiamo iniziato a mettere a punto un servizio per
+        rendere disponibili e consultabili i dati pubblici che riguardano l'inquinamento
+        atmosferico nella città di Genova.</p>
+
+        <p>Poiché la pubblicazione del bollettino è quotidiana, la base del servizio
+        è un <code>cronjob</code> in esecuzione sul server <code>ominiverdi.org</code>
+        che effettua ogni giorno il download del bollettino dalla URL
+        <a href="http://www2.provincia.genova.it/datiaria/Tabulato.pdf">http://www2.provincia.genova.it/datiaria/Tabulato.pdf</a>
+        e la salva in locale. Questa procedura è in esecuzione più o meno ininterrottamente
+        dal <strong>7 febbraio 2008</strong>.
+
+        <p>Lo script di download è disponibile su <a href="https://github.com/steko/aria-ge">github</a>.</p>
+    </div>
+    <div class="span8">
+        <h2>I dati <small>Provenienza ed elaborazione</small></h2>
+        <p>I dati provengono dalla Provincia di Genova - Assessorato all'Ambiente, e sono
+        forniti tramite il sito web
+        <a href="http://www2.provincia.genova.it/datiaria/">http://www2.provincia.genova.it/datiaria/</a> in formato PDF.</p>
+
+        <p>I dati vengono aggiornati ogni mattina e sono riferiti alle 24 ore del
+        giorno precedente. Quindi, la mattina di sabato 21 gennaio 2012 il bollettino
+        conterrà i dati riferiti all'intervallo compreso tra la mezzanotte del 19
+        gennaio e la mezzanotte del 20 gennaio</p>
+
+        <p>L'elaborazione avviene su <a href="https://scraperwiki.com/scrapers/inquinamento_atmosferico_a_genova/">ScraperWiki</a>,
+        ed il procedimento è liberamente consultabile e modificabile.</p>
+
+        <p><span class="label success">New!</span> È disponibile
+        l'<a href="http://steko.ominiverdi.org/aria/pdf/?C=M;O=D">archivio dei PDF</a>,
+        aggiornato quotidianamente.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="scraperwiki">
+  <div class="page-header">
+    <h1>Dati aggiornati <small>Ogni giorno sul tuo schermo</small></h1>
+  </div>
+
+    <div class="row">
+    <div class="span6">
+    <h2>PM10 in Corso Buenos Aires <span class="label success">New!</span></h2>
+      <p>Il grafico mostra i dati sul particolato PM10 misurato nella stazione
+      di Corso Buenos Aires. La misura è in µg/m³ ed è una media sulle 24 ore
+      del giorno (dalla mezzanotte alla mezzanotte successiva).</p>
+      <p>La <a href="http://it.wikipedia.org/wiki/PM10">normativa</a>
+      prescrive che non venga superata la soglia dei 50 µg/m³ più di <strong>7
+      volte all'anno</strong>.
+    </div>
+    <div class="span10">
+        <iframe width="100%" height="320px" src="https://views.scraperwiki.com/run/pm_10_a_genova/"></iframe>
+    </div>
+    </div>
+
+</section>
+
+
+<section id="stazioni">
+  <div class="page-header">
+    <h1>Le stazioni di rilevamento <small>La posizione nel territorio</small></h1>
+  </div>
+<p>Queste sono le coordinate delle stazioni di rilevamento, più o meno precise.</p>
+<p>Per ogni stazione sono indicati i sensori installati.</p>
+
+<table class="zebra-striped condensed">
+
+<thead>
+<tr>
+	<th>Località</th>
+	<th>Coordinate WGS84</th>
+	<th>SO<sub>2</sub></th>
+	<th>O<sub>3</sub></th>
+	<th>NO<sub>2</sub></th>
+	<th>CO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+
+	<td>Giovi</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.54407&mlon=8.936&zoom=13&layers=B0FT">44.54407, 8.936</a></td>
+	<td></td>
+	<td class="o3">x</td>
+	<td class="no2">x</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>Acquasola</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.40761&mlon=8.939886&zoom=13&layers=B0FT">44.40761, 8.939886</a></td>
+	<td class="so2">x</td>
+	<td class="o3">x</td>
+	<td class="no2">x</td>
+	<td class="co">x</td>
+
+</tr>
+<tr>
+	<td>Quarto</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.38646&mlon=8.99876&zoom=13&layers=B0FT">44.38646, 8.99876</a></td>
+	<td class="so2">x</td>
+	<td class="o3">x</td>
+	<td class="no2">x</td>
+	<td class="co">x</td>
+</tr>
+<tr>
+	<td>Sestri Ponente</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.42&mlon=8.85&zoom=13&layers=B0FT">44.42, 8.85</a></td>
+	<td class="so2">x</td>
+	<td></td>
+	<td class="no2">x</td>
+	<td class="co">x</td>
+</tr>
+<tr>
+	<td>C.so Firenze</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.418088&mlon=8.931665&zoom=13&layers=B0FT">44.418088, 8.931665</a></td>
+	<td class="so2">x</td>
+	<td></td>
+	<td class="no2">x</td>
+	<td class="co">x</td>
+</tr>
+<tr>
+	<td>Villa Raggio</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.417838&mlon=8.863079&zoom=13&layers=B0FT">44.417838, 8.863079</a></td>
+	<td class="so2">x</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>Rimessa A.M.T. Cornigliano</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.415032&mlon=8.873586&zoom=16&layers=B0FT">44.415032, 8.873586</a></td>
+	<td class="so2">x</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>Calasanzio</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.41968&mlon=8.874874&zoom=13&layers=B0FT">44.41968, 8.874874</a></td>
+	<td class="so2">x</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>Corso Europa</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.404803&mlon=8.967917&zoom=13&layers=B0FT">44.404803, 8.967917</a></td>
+	<td></td>
+	<td></td>
+	<td class="no2">x</td>
+	<td class="co">x</td>
+</tr>
+<tr>
+	<td>C.so Buenos Aires</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.4032&mlon=8.9499&zoom=13&layers=B0FT">44.4032, 8.9499</a></td>
+	<td></td>
+	<td></td>
+	<td class="no2">x</td>
+	<td class="co">x</td>
+</tr>
+<tr>
+	<td>Gavette</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.433183&mlon=8.9598&zoom=13&layers=B0FT">44.433183, 8.9598</a></td>
+	<td class="so2">x</td>
+	<td></td>
+	<td class="no2">x</td>
+	<td class="co">x</td>
+</tr>
+<tr>
+	<td>P.zza Masnata</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.41807&mlon=8.88603&zoom=13&layers=B0FT">44.41807, 8.88603</a></td>
+	<td></td>
+	<td></td>
+	<td class="no2">x</td>
+	<td class="co">x</td>
+</tr>
+<tr>
+	<td>Via Molteni</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.411863&mlon=8.88692&zoom=13&layers=B0FT">44.411832, 8.886748</a></td>
+	<td class="so2">x</td>
+	<td></td>
+	<td class="no2">x</td>
+	<td class="co">x</td>
+</tr>
+<tr>
+	<td>Via Buozzi</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.41437&mlon=8.91366&zoom=13&layers=B0FT">44.41437, 8.91366</a></td>
+	<td class="so2">x</td>
+	<td></td>
+	<td class="no2">x</td>
+	<td class="co">x</td>
+</tr>
+<tr>
+	<td>Via Pastorino</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.460115&mlon=8.902061&zoom=13&layers=B0FT">44.460115, 8.902061</a></td>
+	<td></td>
+	<td></td>
+	<td class="no2">x</td>
+	<td class="co">x</td>
+</tr>
+<tr>
+	<td>Montegrappa</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.407739&mlon=8.948406&zoom=13&layers=B0FT">44.407739, 8.948406</a></td>
+	<td></td>
+	<td></td>
+	<td class="no2">x</td>
+	<td class="co">x</td>
+</tr>
+<tr>
+	<td>Giardini Melis</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.41559&mlon=8.87434&zoom=13&layers=B0FT">44.41559, 8.87434</a></td>
+	<td class="so2">x</td>
+	<td></td>
+	<td class="no2">x</td>
+	<td class="co">x</td>
+</tr>
+<tr>
+	<td>Multedo</td>
+	<td><a href="http://www.openstreetmap.org/?mlat=44.427901&mlon=8.827674&zoom=13&layers=B0FT">44.427901, 8.827674</a></td>
+	<td class="so2">x</td>
+	<td></td>
+	<td class="no2">x</td>
+	<td class="co">x</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+
+<section id="sensori">
+  <div class="page-header">
+    <h1>Mappe delle stazioni in base ai sensori montati</h1>
+  </div>
+  <p>In queste mappe sono indicate le posizioni dei sensori per i 4 principali
+  agenti inquinanti monitorati.</p>
+<table class="condensed">
+    <tbody>
+    <tr>
+        <td>Rilevatori SO<sub>2</sub><br /><img src="images/stazioni-so2.png" style="border:1px solid black;" /></td>
+        <td>Rilevatori O<sub>3</sub><br /><img src="images/stazioni-o3.png" style="border:1px solid black;" /></td>
+
+    </tr>
+    <tr>
+        <td>Rilevatori NO<sub>2</sub><br /><img src="images/stazioni-no2.png" style="border:1px solid black;" /></td>
+        <td>Rilevatori CO<sub>&nbsp;</sub><br /><img src="images/stazioni-co.png" style="border:1px solid black;" /></td>
+    </tr>
+    </tbody>
+</table>
+
+<!--<ul class="media-grid">-->
+<!--    <li>-->
+<!--        <a href="#">-->
+<!--            <img src="images/stazioni-so2.png" class="thumbnail" />SO<sub>2</sub>-->
+<!--        </a>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--        <img src="images/stazioni-o3.png" class="thumbnail" />O<sub>3</sub>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--        <img src="images/stazioni-no2.png" class="thumbnail" />NO<sub>2</sub>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--        <img src="images/stazioni-co.png" class="thumbnail" />CO<sub>&nbsp;</sub>-->
+<!--    </li>-->
+<!--</ul>-->
+
+</section>
+
+
+<section id="mappa">
+  <div class="page-header">
+    <h1>La mappa <small>Dati geografici liberi</small></h1>
+  </div>
+    <div class="row">
+      <div class="span4">
+        <p>La mappa indica la posizione delle stazioni di rilevamento della Provincia
+        di Genova.</p>
+        <p>La mappa è realizzata con <a href="http://mapserver.gis.umn.edu/">UMN Mapserver</a>
+        utilizzando i dati di <a href="http://www.openstreetmap.org/?lat=44.469&lon=8.936&zoom=11&layers=B0FT">Openstreetmap</a>
+        e <a href="http://srtm.csi.cgiar.org/">SRTM</a>. I dati Openstreetmap
+        non sono ancora completi per l'area genovese, ma si tratta dell'unico dataset
+        libero disponibile.</p>
+      </div>
+    <div class="span12">
+        <img src="images/stazioni.png" />
+    </div>
+    </div>
+    
+
+    
+
+    
+</section>
+
+<section id="link">
+  <div class="page-header">
+    <h1>Link utili</h1>
+  </div>
+<ul>
+    <li><a href="http://www.ge.infn.it/iba/siti.html">Polveri sottili a Genova</a></li>
+    <li><a href="http://www.arpa.veneto.it/chi_e_arpav/htm/urp_details.asp?pg=2">Accesso alle informazioni ambientali</a></li>    
+    <li><a href="http://www.airnow.gov/index.cfm?action=aqibasics.aqi">Air Quality Index (AQI)</a> <span class="label success">New!</span> 
+</ul>
+</section>
+
+<footer>
+  <p class="copyright">Questo sito e i suoi contenuti sono disponibili nei
+  termini della licenza <a href="http://creativecommons.org/licenses/by/3.0/deed.it">Creative Commons Attribuzione 3.0 Unported (CC BY 3.0)</a>.</p>
+</footer>
+</div>
+
+    <!-- Le javascript -->
+    <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+    <script src="js/bootstrap-scrollspy.js"></script>
+    <script src="js/bootstrap-alerts.js"></script>
+
+ </body>
+</html>
