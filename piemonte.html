@@ -1,0 +1,116 @@
+---
+title: Qualità dell'aria in Piemonte
+---
+
+{% include header.html %}
+
+ <body>
+
+    <!-- Topbar
+    ================================================== -->
+    <div class="topbar" data-scrollspy="scrollspy" >
+      <div class="topbar-inner">
+        <div class="container">
+          <a class="brand" href="#"><span class="ominiverdi">ominiverdi</span></a>
+
+          <ul class="nav">
+            <li class="active"><a href="#about">Panoramica</a>
+            <li><a href="#scraperwiki">Dati aggiornati</a>
+<!--            <li><a href="#link">Link</a>>-->
+          </ul>
+        </div>
+      </div>
+    </div>
+
+<div class="container">
+    <header>
+        <h1>Qualità dell'aria in Piemonte <small>Dati liberi sulla qualità dell'aria</small> <a href="https://twitter.com/share" class="twitter-share-button" data-via="stekosteko" data-lang="it">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</h1>
+    </header>
+
+    <div class="row">
+        <div class="span8">
+            <p>Nel 2011, in occasione di <a href="http://biennaledemocrazia.it/opendata/">Torino Open Data</a>,
+            sono stati rilasciati nei termini di utilizzo Creative Commons Zero
+            alcuni dataset relativi alla qualità dell'aria in Piemonte e nella città di Torino.
+            <p>Gli open data sono fatti per essere usati, e abbiamo deciso di iniziare
+            dalla cosa più semplice, ovvero estrarre i dati dai siti web dei sistemi
+            informativi tramite <strong>scraping</strong> e renderli disponibili
+            in formati semplici da visualizzare ed analizzare.
+
+            <div class="alert-message warning fade in" data-alert="alert">
+                <a class="close" href="#">×</a>
+                <p><strong>Attenzione!</strong> Questo servizio è in fase di sperimentazione.</p>
+                <p>I dati presentati non hanno alcun valore ufficiale e non sono in nessun
+                modo approvati dagli enti che effettuano le misurazioni.</p>
+            </div>
+        </div>
+        <div class="span8">
+            <img src="images/20110820866.jpg" width="100%" />
+        </div>
+    </div>
+
+
+<section id="about">
+  <div class="page-header">
+    <h1>Cosa stiamo facendo <small>Una panoramica del progetto</small></h1>
+  </div>
+
+  <div class="row">
+    <div class="span8">
+        <h2>PM10 a Torino <small>Dati comunali</small></h2>
+        <p>I dati sulla qualità dell'aria nel Comune di Torino sono
+        disponibili 
+        <a href="http://www.comune.torino.it/ambiente/aria/qualita_aria/dati_aria/valori_annuali_pm10.shtml">sul sito web</a>
+        del Comune.
+        
+        <p>L'elaborazione avviene su <a href="https://scraperwiki.com/scrapers/aria-comune-di-torino/">ScraperWiki</a>,
+        ed il procedimento è liberamente consultabile e modificabile. Attualmente sono disponibili i dati dal 2000 al 2010.
+    </div>
+    <div class="span8">
+        <h2>Qualità dell'aria in Piemonte</h2>
+        <p>I dati provengono da
+        <a href="http://www.sistemapiemonte.it/ambiente/srqa/consultadati.shtml">Sistema Piemonte</a>
+        e sono consultabili online tramite grafici quotidiani e una interfaccia
+        di ricerca.
+
+        <p>L'elaborazione avviene su <a href="https://scraperwiki.com/scrapers/sistema-piemonte-qualita-dellaria-in-piemonte/">ScraperWiki</a>,
+        ed il procedimento è liberamente consultabile e modificabile.
+        
+        <p><span class="label important">Stop!</span> Questo dataset, a causa della sua complessità, è ancora in corso
+        di elaborazione.
+
+        <p><span class="label success">New!</span> È disponibile
+        l'<a href="http://steko.ominiverdi.org/aria/pdf/?C=M;O=D">archivio dei PDF</a>,
+        aggiornato quotidianamente.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="scraperwiki">
+  <div class="page-header">
+    <h1>Dati aggiornati <small>Ogni giorno sul tuo schermo</small></h1>
+  </div>
+
+    <div class="row">
+    <div class="span6">
+    <h2>Ci stiamo lavorando ...</h2>
+      <p>Tornate presto!
+    </div>
+
+    </div>
+
+</section>
+
+<!--<section id="link">-->
+<!--  <div class="page-header">-->
+<!--    <h1>Link utili</h1>-->
+<!--  </div>-->
+<!--<ul>-->
+<!--    <li><span class="label success">New!</span> <a href="http://prono.provincia.genova.it/settore.asp?CodiceSettore=AR">Provincia di Genova - Provincia Notizie - Aria</a>-->
+<!--</ul>-->
+<!--</section>-->
+
+{% include footer.html %}
